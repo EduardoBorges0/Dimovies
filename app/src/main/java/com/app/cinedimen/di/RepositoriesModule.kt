@@ -1,5 +1,6 @@
 package com.app.cinedimen.di
 
+import com.app.cinedimen.data.network.detailscreen.MovieReviewGET
 import com.app.cinedimen.data.network.detailscreen.MoviesDetailsGET
 import com.app.cinedimen.data.network.detailscreen.SimilarMoviesGET
 import com.app.cinedimen.data.network.listscreen.NowPlayingGET
@@ -7,6 +8,7 @@ import com.app.cinedimen.data.network.listscreen.PopularGET
 import com.app.cinedimen.data.network.listscreen.TopRatedGET
 import com.app.cinedimen.data.network.listscreen.UpComingGET
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieDetails
+import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieReview
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesSimilarMovies
 import com.app.cinedimen.data.repositories.listscreen.RepositoriesNowPlaying
 import com.app.cinedimen.data.repositories.listscreen.RepositoriesPopularMovies
@@ -56,5 +58,11 @@ object RepositoryModule {
     @Singleton
     fun provideRepositoriesSimilarMovies(similarMoviesGET: SimilarMoviesGET): RepositoriesSimilarMovies {
         return RepositoriesSimilarMovies(similarMoviesGET)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepositoriesMovieReview(movieReviewGET: MovieReviewGET): RepositoriesMovieReview {
+        return RepositoriesMovieReview(movieReviewGET)
     }
 }

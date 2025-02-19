@@ -6,13 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.cinedimen.data.model.NowPlayingModel
-import com.app.cinedimen.domain.usecases.listscreen.PopularUseCase
+import com.app.cinedimen.data.repositories.listscreen.RepositoriesPopularMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class PopularMovieViewModel @Inject constructor(private val popularUseCase: PopularUseCase) : ViewModel(){
+class PopularMovieViewModel @Inject constructor(private val repositoriesPopularMovies: RepositoriesPopularMovies) : ViewModel(){
     private val _popularMovies = MutableLiveData<NowPlayingModel>()
     val popularMovies: LiveData<NowPlayingModel> = _popularMovies
 
@@ -26,15 +28,20 @@ class PopularMovieViewModel @Inject constructor(private val popularUseCase: Popu
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = popularUseCase.getPopularMovies()
+                val response = repositoriesPopularMovies.getPopularMovies()
                 if (response.isSuccessful && response.body() != null) {
                     _popularMovies.value = response.body()
                 }else if(response.body() == null){
                     _errorMessage.value = "Sem filmes"
+                }else {
+                    _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
-                _popularMovies.value = popularUseCase.getPopularMovies().body()
-            }catch (e: Exception){
-                _errorMessage.value = "ERRO: ${e.message}"
+            } catch (e: IOException) {
+                _errorMessage.value = "Erro de conexão: verifique sua internet."
+            } catch (e: HttpException) {
+                _errorMessage.value = "Erro HTTP ${e.code()}: ${e.message()}"
+            } catch (e: Exception) {
+                _errorMessage.value = "Erro inesperado: ${e.localizedMessage}"
             } finally {
                 _isLoading.value = false
             }
