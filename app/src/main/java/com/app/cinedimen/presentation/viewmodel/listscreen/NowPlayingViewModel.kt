@@ -39,6 +39,7 @@ class NowPlayingViewModel @Inject constructor(private val repositoriesNowPlaying
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
+                _nowPlayingMovies.value = repositoriesNowPlaying.getMoviesNowPlaying().body()
             } catch (e: IOException) {  // Erros de conexão
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
             } catch (e: HttpException) { // Erros HTTP inesperados

@@ -38,7 +38,7 @@ class NavigationsActivity : ComponentActivity() {
 
         setContent {
             LaunchedEffect(Unit) {
-                similarMoviesViewModel.getSimilarMovies(8)
+                nowPlayingViewModel.getMoviesNowPlaying()
             }
             CineDimenTheme {
                     NavigationsRoutes(
