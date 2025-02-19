@@ -1,6 +1,7 @@
 package com.app.cinedimen.di
 
 import com.app.cinedimen.data.network.detailscreen.MoviesDetailsGET
+import com.app.cinedimen.data.network.detailscreen.SimilarMoviesGET
 import com.app.cinedimen.data.network.listscreen.NowPlayingGET
 import com.app.cinedimen.data.network.listscreen.PopularGET
 import com.app.cinedimen.data.network.listscreen.TopRatedGET
@@ -44,5 +45,11 @@ object ApiModule {
     @Singleton
     fun provideMovieDetails(retrofit: Retrofit) : MoviesDetailsGET{
         return retrofit.create(MoviesDetailsGET::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSimilarMovie(retrofit: Retrofit) : SimilarMoviesGET{
+        return retrofit.create(SimilarMoviesGET::class.java)
     }
 }

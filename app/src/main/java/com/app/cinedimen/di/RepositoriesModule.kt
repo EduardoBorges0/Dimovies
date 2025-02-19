@@ -1,11 +1,13 @@
 package com.app.cinedimen.di
 
 import com.app.cinedimen.data.network.detailscreen.MoviesDetailsGET
+import com.app.cinedimen.data.network.detailscreen.SimilarMoviesGET
 import com.app.cinedimen.data.network.listscreen.NowPlayingGET
 import com.app.cinedimen.data.network.listscreen.PopularGET
 import com.app.cinedimen.data.network.listscreen.TopRatedGET
 import com.app.cinedimen.data.network.listscreen.UpComingGET
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieDetails
+import com.app.cinedimen.data.repositories.detailscreen.RepositoriesSimilarMovies
 import com.app.cinedimen.data.repositories.listscreen.RepositoriesNowPlaying
 import com.app.cinedimen.data.repositories.listscreen.RepositoriesPopularMovies
 import com.app.cinedimen.data.repositories.listscreen.RepositoriesTopRated
@@ -48,5 +50,11 @@ object RepositoryModule {
     @Singleton
     fun provideRepositoriesMovieDetails(moviesDetailsGET: MoviesDetailsGET): RepositoriesMovieDetails {
         return RepositoriesMovieDetails(moviesDetailsGET)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepositoriesSimilarMovies(similarMoviesGET: SimilarMoviesGET): RepositoriesSimilarMovies {
+        return RepositoriesSimilarMovies(similarMoviesGET)
     }
 }
