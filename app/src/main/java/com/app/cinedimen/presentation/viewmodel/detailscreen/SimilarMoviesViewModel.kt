@@ -24,7 +24,7 @@ class SimilarMoviesViewModel @Inject constructor(private val repositoriesSimilar
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    suspend fun getSimilarMovies(movieId: Int){
+    fun getSimilarMovies(movieId: Int){
         _isLoading.value = true
         viewModelScope.launch {
             try {

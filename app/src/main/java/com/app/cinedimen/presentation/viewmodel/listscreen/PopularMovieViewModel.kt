@@ -24,7 +24,7 @@ class PopularMovieViewModel @Inject constructor(private val repositoriesPopularM
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    suspend fun getPopularMovies(){
+    fun getPopularMovies(){
         _isLoading.value = true
         viewModelScope.launch {
             try {

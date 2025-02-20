@@ -27,7 +27,7 @@ class NowPlayingViewModel @Inject constructor(private val repositoriesNowPlaying
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    suspend fun getMoviesNowPlaying(){
+    fun getMoviesNowPlaying(){
         _isLoading.value = true
         viewModelScope.launch {
             try {

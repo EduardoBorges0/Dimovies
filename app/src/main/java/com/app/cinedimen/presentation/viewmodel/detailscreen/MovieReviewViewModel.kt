@@ -1,10 +1,12 @@
 package com.app.cinedimen.presentation.viewmodel.detailscreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.cinedimen.data.model.MovieReviewModel
+import com.app.cinedimen.data.model.MovieReviewsResponse
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieReview
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieReviewViewModel @Inject constructor(private val repositoriesMovieReview: RepositoriesMovieReview) : ViewModel() {
-    private val _movieReview = MutableLiveData<MovieReviewModel>()
-    val movieReview: LiveData<MovieReviewModel> = _movieReview
+    private val _movieReview = MutableLiveData<MovieReviewsResponse>()
+    val movieReview: LiveData<MovieReviewsResponse> = _movieReview
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -24,7 +26,7 @@ class MovieReviewViewModel @Inject constructor(private val repositoriesMovieRevi
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    suspend fun getMovieReview(movieId: Int) {
+    fun getMovieReview(movieId: Int) {
         _isLoading.value = true
         viewModelScope.launch {
             try {
@@ -36,12 +38,20 @@ class MovieReviewViewModel @Inject constructor(private val repositoriesMovieRevi
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
-            } catch (e: IOException) {  // Erros de conexão
+                _movieReview.value = repositoriesMovieReview.getMovieReviews(movieId).body()
+                Log.d("ESSE SÃO OS REVIEWS", "REVIEWS: ${movieReview.value}")
+            } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
-            } catch (e: HttpException) { // Erros HTTP inesperados
+                Log.d("ESSE SÃO OS IO", "REVIEWS: ${e.message}")
+
+            } catch (e: HttpException) {
                 _errorMessage.value = "Erro HTTP ${e.code()}: ${e.message()}"
-            } catch (e: Exception) { // Qualquer outro erro inesperado
+                Log.d("ESSE SÃO OS HTTP", "REVIEWS: ${e.message}")
+
+            } catch (e: Exception) {
                 _errorMessage.value = "Erro inesperado: ${e.localizedMessage}"
+                Log.d("ESSE SÃO OS EXCEPTION", "REVIEWS: ${e.message}")
+
             }
             finally {
                 _isLoading.value = false

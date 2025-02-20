@@ -2,6 +2,14 @@ package com.app.cinedimen.data.model
 
 import com.google.gson.annotations.SerializedName
 
+data class MovieReviewsResponse(
+    val id: Int,
+    val page: Int,
+    val results: List<MovieReviewModel>,
+    val total_pages: Int,
+    val total_results: Int
+)
+
 data class MovieReviewModel(
     val author: String,
     @SerializedName("author_details") val authorDetails: AuthorDetails,

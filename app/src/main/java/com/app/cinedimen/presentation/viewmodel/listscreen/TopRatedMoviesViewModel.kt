@@ -24,7 +24,7 @@ class TopRatedMoviesViewModel @Inject constructor(private val repositoriesTopRat
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    suspend fun getTopRated() {
+    fun getTopRated() {
         _isLoading.value = true
         viewModelScope.launch {
             try {

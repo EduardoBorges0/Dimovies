@@ -23,7 +23,7 @@ class UpComingViewModel @Inject constructor(private val repositoriesUpComing: Re
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    suspend fun getUpComingMovies(){
+    fun getUpComingMovies(){
         _isLoading.value = true
         viewModelScope.launch {
             try {
@@ -35,6 +35,7 @@ class UpComingViewModel @Inject constructor(private val repositoriesUpComing: Re
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
+                _upComingMovies.value = repositoriesUpComing.getUpComingMovies().body()
             } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
             } catch (e: HttpException) {
