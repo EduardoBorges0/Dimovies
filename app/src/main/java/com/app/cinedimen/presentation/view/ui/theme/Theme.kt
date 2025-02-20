@@ -1,4 +1,4 @@
-package com.app.cinedimen.ui.theme
+package com.app.cinedimen.presentation.view.ui.theme
 
 import android.app.Activity
 import android.os.Build

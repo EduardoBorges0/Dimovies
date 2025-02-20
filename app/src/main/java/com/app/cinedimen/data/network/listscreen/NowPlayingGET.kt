@@ -14,5 +14,4 @@ interface NowPlayingGET {
         @Query("language") language: String = "pt-BR",
         @Query("page") page: Int = 1
     ): Response<NowPlayingModel>
-
 }

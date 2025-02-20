@@ -36,8 +36,15 @@ fun TopDetails(navController: NavController,
                voteAverage: Double
                ) {
 
-    Box(modifier = Modifier.fillMaxWidth().height(440.dp)) {
-        ArrowBack(navController = navController, modifier = Modifier.align(Alignment.TopStart))
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .height(440.dp)) {
+
+        ArrowBack(
+            navController = navController,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+        )
 
         AsyncImage(
             model = ImageUtils.getImageUrl(path = backdropPath),
@@ -48,11 +55,11 @@ fun TopDetails(navController: NavController,
                 .clip(RoundedCornerShape(0.dp, 0.dp, 16.dp, 16.dp))
                 .graphicsLayer { alpha = 0.3f }
         )
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(RoundedCornerShape(0.dp, 0.dp, 16.dp, 16.dp))
-
                 .background(
                     Brush.verticalGradient(
                         colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f)),
@@ -61,8 +68,7 @@ fun TopDetails(navController: NavController,
                 )
         )
         AsyncImage(
-            model = ImageUtils.getImageUrl(path = posterPath)
-            ,
+            model = ImageUtils.getImageUrl(path = posterPath),
             contentDescription = "Movie Poster",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -74,7 +80,9 @@ fun TopDetails(navController: NavController,
         MovieOverview(movieName = title,
             movieTime = runtime,
             movieGenres = genres,
-            modifier = Modifier.align(Alignment.CenterStart).padding(top = 120.dp),
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .padding(top = 120.dp),
             movieRated = voteAverage
         )
 }
@@ -84,10 +92,12 @@ fun ArrowBack(navController: NavController, modifier: Modifier){
     Icon(
         imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowLeft,
         contentDescription = "arrow back",
-        modifier = modifier.padding(36.dp, top = 50.dp).size(35.dp).clickable {
+        modifier = modifier
+            .padding(36.dp, top = 50.dp)
+            .size(35.dp)
+            .clickable {
             navController.popBackStack()
         },
         tint = Color.White,
-
     )
 }

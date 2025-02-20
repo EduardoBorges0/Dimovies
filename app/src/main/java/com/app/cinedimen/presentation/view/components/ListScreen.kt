@@ -1,4 +1,4 @@
-package com.app.cinedimen.presentation.view.movieList
+package com.app.cinedimen.presentation.view.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,11 +22,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.app.cinedimen.data.model.Result
+import com.app.cinedimen.utils.ImageUtils
 
 @Composable
-fun MovieList(navController: NavController, movieSituation: String, movieList: List<Result>) {
+fun ListScreen(navController: NavController,
+              movieSituation: String,
+              movieList: List<Result>,
+              modifier: Modifier) {
     val heigthSize = LocalConfiguration.current.screenHeightDp
-    Column(modifier = Modifier.padding(bottom = 10.dp)) {
+    Column(modifier = modifier) {
         Text(
             text = movieSituation,
             color = Color.White,
@@ -42,11 +46,11 @@ fun MovieList(navController: NavController, movieSituation: String, movieList: L
         ) {
             items(movieList) { movie ->
                 AsyncImage(
-                    model = "https://image.tmdb.org/t/p/original${movie.poster_path}",
+                    model = ImageUtils.getImageUrl(movie.poster_path),
                     contentDescription = "Filme",
                     modifier = Modifier
                         .padding(horizontal = 10.dp)
-                        .clip(RoundedCornerShape(8.dp))
+                        .clip(RoundedCornerShape(16.dp))
                         .background(Color.White)
                         .height(heigthSize.dp / 3.95f)
                         .clickable {

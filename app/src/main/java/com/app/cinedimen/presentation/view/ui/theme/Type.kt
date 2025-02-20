@@ -1,4 +1,4 @@
-package com.app.cinedimen.ui.theme
+package com.app.cinedimen.presentation.view.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
