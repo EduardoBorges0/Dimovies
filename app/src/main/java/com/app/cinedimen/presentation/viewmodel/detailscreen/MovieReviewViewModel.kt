@@ -38,20 +38,12 @@ class MovieReviewViewModel @Inject constructor(private val repositoriesMovieRevi
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
-                _movieReview.value = repositoriesMovieReview.getMovieReviews(movieId).body()
-                Log.d("ESSE SÃO OS REVIEWS", "REVIEWS: ${movieReview.value}")
             } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
-                Log.d("ESSE SÃO OS IO", "REVIEWS: ${e.message}")
-
             } catch (e: HttpException) {
                 _errorMessage.value = "Erro HTTP ${e.code()}: ${e.message()}"
-                Log.d("ESSE SÃO OS HTTP", "REVIEWS: ${e.message}")
-
             } catch (e: Exception) {
                 _errorMessage.value = "Erro inesperado: ${e.localizedMessage}"
-                Log.d("ESSE SÃO OS EXCEPTION", "REVIEWS: ${e.message}")
-
             }
             finally {
                 _isLoading.value = false

@@ -36,11 +36,11 @@ class SimilarMoviesViewModel @Inject constructor(private val repositoriesSimilar
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
-            } catch (e: IOException) {  // Erros de conexão
+            } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
-            } catch (e: HttpException) { // Erros HTTP inesperados
+            } catch (e: HttpException) {
                 _errorMessage.value = "Erro HTTP ${e.code()}: ${e.message()}"
-            } catch (e: Exception) { // Qualquer outro erro inesperado
+            } catch (e: Exception) {
                 _errorMessage.value = "Erro inesperado: ${e.localizedMessage}"
             }
             finally {

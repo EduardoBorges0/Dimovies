@@ -35,7 +35,6 @@ class UpComingViewModel @Inject constructor(private val repositoriesUpComing: Re
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
-                _upComingMovies.value = repositoriesUpComing.getUpComingMovies().body()
             } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
             } catch (e: HttpException) {

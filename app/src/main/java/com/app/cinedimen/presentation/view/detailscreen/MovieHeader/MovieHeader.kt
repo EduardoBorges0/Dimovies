@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.app.cinedimen.data.model.Genre
+import com.app.cinedimen.presentation.view.components.ArrowBack
 import com.app.cinedimen.utils.ImageUtils
 
 @Composable
@@ -86,18 +87,4 @@ fun TopDetails(navController: NavController,
             movieRated = voteAverage
         )
 }
-}
-@Composable
-fun ArrowBack(navController: NavController, modifier: Modifier){
-    Icon(
-        imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowLeft,
-        contentDescription = "arrow back",
-        modifier = modifier
-            .padding(36.dp, top = 50.dp)
-            .size(35.dp)
-            .clickable {
-            navController.popBackStack()
-        },
-        tint = Color.White,
-    )
 }
