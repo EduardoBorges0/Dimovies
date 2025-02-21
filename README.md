@@ -16,6 +16,7 @@ Arquitetura e Design Pattern:
 - Repository Pattern
 
 A API_KEY está escondida no local.properties.
+Responsivo para diferentes tipos de tela.
 O APK do aplicativo está localizado em Releases aqui do Github.
 
 PDF com as 3 telas: 
