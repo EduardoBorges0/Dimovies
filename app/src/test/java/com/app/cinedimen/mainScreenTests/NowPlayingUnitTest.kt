@@ -99,7 +99,6 @@ class NowPlayingUnitTest {
         // Act
         viewModel.getMoviesNowPlaying()
 
-        // Aguarde a LiveData ser atualizada
         advanceUntilIdle()
 
         // Assert

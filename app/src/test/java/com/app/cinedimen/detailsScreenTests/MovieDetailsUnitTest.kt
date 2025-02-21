@@ -2,18 +2,13 @@ package com.app.cinedimen.detailsScreenTests
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.Collection
-import com.app.cinedimen.data.model.Dates
 import com.app.cinedimen.data.model.Genre
 import com.app.cinedimen.data.model.MoviesDetails
-import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.model.ProductionCompany
 import com.app.cinedimen.data.model.ProductionCountry
-import com.app.cinedimen.data.model.Result
 import com.app.cinedimen.data.model.SpokenLanguage
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieDetails
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesNowPlaying
 import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieDetailsViewModel
-import com.app.cinedimen.presentation.viewmodel.listscreen.NowPlayingViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -63,7 +58,7 @@ class MovieDetailsUnitTest {
                 poster_path = "/path_to_collection_poster.jpg",
                 backdrop_path = "/path_to_collection_backdrop.jpg"
             ),
-            budget = 60000000,  // Fictício
+            budget = 60000000,
             genres = listOf(
                 Genre(id = 16, name = "Animação"),
                 Genre(id = 14, name = "Fantasia"),

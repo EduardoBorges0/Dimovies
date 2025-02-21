@@ -2,17 +2,9 @@ package com.app.cinedimen.detailsScreenTests
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.AuthorDetails
-import com.app.cinedimen.data.model.Collection
-import com.app.cinedimen.data.model.Genre
 import com.app.cinedimen.data.model.MovieReviewModel
 import com.app.cinedimen.data.model.MovieReviewsResponse
-import com.app.cinedimen.data.model.MoviesDetails
-import com.app.cinedimen.data.model.ProductionCompany
-import com.app.cinedimen.data.model.ProductionCountry
-import com.app.cinedimen.data.model.SpokenLanguage
-import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieDetails
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieReview
-import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieDetailsViewModel
 import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieReviewViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -72,8 +64,8 @@ class MovieReviewUnitTest {
                     url = "https://www.example.com/review_12345"
                 )
             ),
-            total_pages = 1, // Apenas uma página de reviews nesta resposta fictícia
-            total_results = 1 // Apenas um review incluído
+            total_pages = 1,
+            total_results = 1
         )
 
         val response = Response.success(review)

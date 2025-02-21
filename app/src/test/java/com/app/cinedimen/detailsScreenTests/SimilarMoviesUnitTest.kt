@@ -84,8 +84,8 @@ class SimilarMoviesUnitTest {
     }
     @Test
     fun `test getSimilarMovies no movies`() = runTest {
-        // Arrange
 
+        // Arrange
         val similarMovies = NowPlayingModel(
             dates = Dates("2025-02-20", "2025-02-19"),
             page = 1,
@@ -100,7 +100,6 @@ class SimilarMoviesUnitTest {
         // Act
         viewModel.getSimilarMovies(12110)
 
-        // Aguarde a LiveData ser atualizada
         advanceUntilIdle()
 
         // Assert
