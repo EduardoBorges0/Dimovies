@@ -29,12 +29,12 @@ class SimilarMoviesViewModel @Inject constructor(private val repositoriesSimilar
         viewModelScope.launch {
             try {
                 val response = repositoriesSimilarMovies.similarMovies(movieId = movieId)
-                if (response.isSuccessful && response.body() != null) {
-                    _similarMovie.value = response.body()
-                }else if(response.body() == null){
+                if(response.body()?.results?.isEmpty() == true){
                     _errorMessage.value = "Filme não encontrado"
+                }else if (response.isSuccessful && response.body() != null) {
+                    _similarMovie.value = response.body()
                 }else {
-                    _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
+                    _errorMessage.value = response.code().toString()
                 }
             } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."

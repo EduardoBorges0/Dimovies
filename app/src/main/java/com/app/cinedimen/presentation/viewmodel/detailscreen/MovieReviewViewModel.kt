@@ -34,7 +34,7 @@ class MovieReviewViewModel @Inject constructor(private val repositoriesMovieRevi
                 if (response.isSuccessful && response.body() != null) {
                     _movieReview.value = response.body()
                 }else if(response.body() == null){
-                    _errorMessage.value = "Filme não encontrado"
+                    _errorMessage.value = "Sem Comentários"
                 }else {
                     _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }

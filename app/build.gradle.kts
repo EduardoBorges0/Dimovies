@@ -66,12 +66,11 @@ dependencies {
     testImplementation (libs.androidx.core)
     testImplementation (libs.kotlinx.coroutines.test)
     implementation (libs.coil.compose)
-    implementation(libs.accompanist.flowlayout)
-
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
-    implementation (libs.androidx.lifecycle.livedata.ktx.v260 )// Para LiveData
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
 
+    implementation (libs.androidx.lifecycle.livedata.ktx.v260 )// Para LiveData
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

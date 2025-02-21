@@ -32,13 +32,15 @@ class NowPlayingViewModel @Inject constructor(private val repositoriesNowPlaying
         viewModelScope.launch {
             try {
                 val response = repositoriesNowPlaying.getMoviesNowPlaying()
-                if (response.isSuccessful && response.body() != null) {
-                    _nowPlayingMovies.value = response.body()
-                }else if(response.body() == null){
+                if(response.body()?.results?.isNullOrEmpty() == true){
                     _errorMessage.value = "Sem filmes"
-                }else {
-                    _errorMessage.value = "Erro ${response.code()}: ${response.message()}"
                 }
+                else if (response.isSuccessful && response.body() != null) {
+                    _nowPlayingMovies.value = response.body()
+                }else {
+                    _errorMessage.value = response.code().toString()
+                }
+
             } catch (e: IOException) {
                 _errorMessage.value = "Erro de conexão: verifique sua internet."
             } catch (e: HttpException) {
