@@ -80,7 +80,7 @@ dependencies {
     implementation (libs.coil.compose)
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
-    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    testImplementation (libs.androidx.core.testing)
 
     implementation (libs.androidx.lifecycle.livedata.ktx.v260 )// Para LiveData
     implementation(libs.androidx.core.ktx)
