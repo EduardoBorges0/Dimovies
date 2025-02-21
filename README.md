@@ -15,8 +15,9 @@ Arquitetura e Design Pattern:
 - Clean Architecture + MVVM
 - Repository Pattern
 
-A API_KEY está escondida no local.properties.
+A API_KEY está escondida no local.properties. </br>
 Responsivo para diferentes tipos de tela.
+</br>
 O APK do aplicativo está localizado em Releases aqui do Github.
 
 PDF com as 3 telas: 
