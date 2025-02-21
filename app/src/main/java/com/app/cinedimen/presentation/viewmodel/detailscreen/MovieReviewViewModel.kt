@@ -1,13 +1,10 @@
 package com.app.cinedimen.presentation.viewmodel.detailscreen
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.cinedimen.data.model.MovieReviewModel
 import com.app.cinedimen.data.model.MovieReviewsResponse
-import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieReview
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
