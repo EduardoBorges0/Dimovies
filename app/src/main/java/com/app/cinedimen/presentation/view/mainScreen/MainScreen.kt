@@ -27,31 +27,25 @@ import coil.compose.AsyncImage
 import com.app.cinedimen.R
 import com.app.cinedimen.presentation.view.components.AlertDialogError
 import com.app.cinedimen.presentation.view.components.ListScreen
-import com.app.cinedimen.presentation.viewmodel.listscreen.NowPlayingViewModel
-import com.app.cinedimen.presentation.viewmodel.listscreen.PopularMovieViewModel
-import com.app.cinedimen.presentation.viewmodel.listscreen.TopRatedMoviesViewModel
-import com.app.cinedimen.presentation.viewmodel.listscreen.UpComingViewModel
 import com.app.cinedimen.presentation.view.ui.theme.BackgroundColor
+import com.app.cinedimen.presentation.viewmodel.listscreen.MainScreenViewModel
 
 @Composable
 fun MainScreen(
     navController: NavController,
-    nowPlayingViewModel: NowPlayingViewModel,
-    popularMovieViewModel: PopularMovieViewModel,
-    topRatedMoviesViewModel: TopRatedMoviesViewModel,
-    upComingViewModel: UpComingViewModel
+    mainScreenViewModel: MainScreenViewModel
 ) {
     var showDialog by remember { mutableStateOf(true) }
-    val nowPlayingMovies = nowPlayingViewModel.nowPlayingMovies.observeAsState().value?.results ?: emptyList()
-    val upComingMovies = upComingViewModel.upComingMovies.observeAsState().value?.results ?: emptyList()
-    val popularMovies = popularMovieViewModel.popularMovies.observeAsState().value?.results ?: emptyList()
-    val topRatedMovies = topRatedMoviesViewModel.topRated.observeAsState().value?.results ?: emptyList()
-    val isLoading = nowPlayingViewModel.isLoading.observeAsState().value ?: false
+    val nowPlayingMovies = mainScreenViewModel.nowPlayingMovies.observeAsState().value?.results ?: emptyList()
+    val upComingMovies = mainScreenViewModel.upComingMovies.observeAsState().value?.results ?: emptyList()
+    val popularMovies = mainScreenViewModel.popularMovies.observeAsState().value?.results ?: emptyList()
+    val topRatedMovies = mainScreenViewModel.topRated.observeAsState().value?.results ?: emptyList()
+    val isLoading = mainScreenViewModel.isLoading.observeAsState().value ?: false
 
-    val errorMessageNowPlaying = nowPlayingViewModel.errorMessage.observeAsState().value
-    val errorMessageUpComing = upComingViewModel.errorMessage.observeAsState().value
-    val errorMessagePopular = popularMovieViewModel.errorMessage.observeAsState().value
-    val errorMessageTopRated = topRatedMoviesViewModel.errorMessage.observeAsState().value
+    val errorMessageNowPlaying = mainScreenViewModel.errorMessage.observeAsState().value
+    val errorMessageUpComing = mainScreenViewModel.errorMessage.observeAsState().value
+    val errorMessagePopular = mainScreenViewModel.errorMessage.observeAsState().value
+    val errorMessageTopRated = mainScreenViewModel.errorMessage.observeAsState().value
 
 
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
@@ -97,10 +91,10 @@ fun MainScreen(
             if(showDialog){
                 AlertDialogError(
                     confirmAction = {
-                        nowPlayingViewModel.getMoviesNowPlaying()
-                        topRatedMoviesViewModel.getTopRated()
-                        upComingViewModel.getUpComingMovies()
-                        popularMovieViewModel.getPopularMovies()
+                        mainScreenViewModel.getMoviesNowPlaying()
+                        mainScreenViewModel.getTopRated()
+                        mainScreenViewModel.getUpComingMovies()
+                        mainScreenViewModel.getPopularMovies()
                         showDialog = false
                     },
                     mainMessage = errorMessage,

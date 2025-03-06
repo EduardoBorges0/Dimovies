@@ -4,8 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.AuthorDetails
 import com.app.cinedimen.data.model.MovieReviewModel
 import com.app.cinedimen.data.model.MovieReviewsResponse
-import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieReview
-import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieReviewViewModel
+import com.app.cinedimen.data.repositoriesImpl.detailscreen.RepositoriesImplMovieReview
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -27,7 +26,7 @@ class MovieReviewUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesMovieReview
+    private lateinit var mockRepositories: RepositoriesImplMovieReview
     private lateinit var viewModel: MovieReviewViewModel
 
     @Before

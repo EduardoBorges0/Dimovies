@@ -7,7 +7,7 @@ import com.app.cinedimen.data.model.MoviesDetails
 import com.app.cinedimen.data.model.ProductionCompany
 import com.app.cinedimen.data.model.ProductionCountry
 import com.app.cinedimen.data.model.SpokenLanguage
-import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieDetails
+import com.app.cinedimen.data.repositoriesImpl.detailscreen.RepositoriesImplMovieDetails
 import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieDetailsViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -31,7 +31,7 @@ class MovieDetailsUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesMovieDetails
+    private lateinit var mockRepositories: RepositoriesImplMovieDetails
     private lateinit var viewModel: MovieDetailsViewModel
 
     @Before

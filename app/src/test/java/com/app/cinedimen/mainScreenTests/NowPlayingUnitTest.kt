@@ -4,12 +4,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.Dates
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.model.Result
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesNowPlaying
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplNowPlaying
 import com.app.cinedimen.presentation.viewmodel.listscreen.NowPlayingViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -29,7 +28,7 @@ class NowPlayingUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesNowPlaying
+    private lateinit var mockRepositories: RepositoriesImplNowPlaying
     private lateinit var viewModel: NowPlayingViewModel
 
     @Before

@@ -21,24 +21,20 @@ import com.app.cinedimen.presentation.view.detailscreen.MovieHeader.TopDetails
 import com.app.cinedimen.presentation.view.detailscreen.Review.Reviews
 import com.app.cinedimen.presentation.view.detailscreen.Sinopse.Sinopse
 import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieDetailsViewModel
-import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieReviewViewModel
-import com.app.cinedimen.presentation.viewmodel.detailscreen.SimilarMoviesViewModel
 import com.app.cinedimen.presentation.view.ui.theme.BackgroundColor
 
 @Composable
 fun MovieDetailsContent(navController: NavController,
                         movieDetailsViewModel: MovieDetailsViewModel,
-                        movieReviewViewModel: MovieReviewViewModel,
-                        movieSimilarMoviesViewModel: SimilarMoviesViewModel,
                         movieId: Int
 ) {
     var showDialog by remember { mutableStateOf(true) }
     val movieDetails = movieDetailsViewModel.movieDetails.observeAsState().value
-    val movieReview = movieReviewViewModel.movieReview.observeAsState().value?.results
-    val similarMovies = movieSimilarMoviesViewModel.similarMovie.observeAsState().value?.results ?: emptyList()
+    val movieReview = movieDetailsViewModel.movieReview.observeAsState().value?.results
+    val similarMovies = movieDetailsViewModel.similarMovie.observeAsState().value?.results ?: emptyList()
     val errorMessageDetailsMovie = movieDetailsViewModel.errorMessage.observeAsState().value
-    val errorMessageMovieReview = movieReviewViewModel.errorMessage.observeAsState().value
-    val errorMessageSimilarMovies = movieSimilarMoviesViewModel.errorMessage.observeAsState().value
+    val errorMessageMovieReview = movieDetailsViewModel.errorMessage.observeAsState().value
+    val errorMessageSimilarMovies = movieDetailsViewModel.errorMessage.observeAsState().value
 
 
     val backdropPath = movieDetails?.backdrop_path ?: ""
@@ -87,8 +83,8 @@ fun MovieDetailsContent(navController: NavController,
                     AlertDialogError(
                         confirmAction = {
                             movieDetailsViewModel.getMovieDetails(movieId)
-                            movieReviewViewModel.getMovieReview(movieId)
-                            movieSimilarMoviesViewModel.getSimilarMovies(movieId)
+                            movieDetailsViewModel.getMovieReview(movieId)
+                            movieDetailsViewModel.getSimilarMovies(movieId)
                             showDialog = false
                         },
                         mainMessage = errorMessage

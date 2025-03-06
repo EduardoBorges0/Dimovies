@@ -4,10 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.Dates
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.model.Result
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesNowPlaying
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesPopularMovies
-import com.app.cinedimen.presentation.viewmodel.listscreen.NowPlayingViewModel
-import com.app.cinedimen.presentation.viewmodel.listscreen.PopularMovieViewModel
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplPopularMovies
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -29,7 +26,7 @@ class PopularPlayingUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesPopularMovies
+    private lateinit var mockRepositories: RepositoriesImplPopularMovies
     private lateinit var viewModel: PopularMovieViewModel
 
     @Before

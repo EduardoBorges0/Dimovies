@@ -7,13 +7,20 @@ import com.app.cinedimen.data.network.listscreen.NowPlayingGET
 import com.app.cinedimen.data.network.listscreen.PopularGET
 import com.app.cinedimen.data.network.listscreen.TopRatedGET
 import com.app.cinedimen.data.network.listscreen.UpComingGET
-import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieDetails
-import com.app.cinedimen.data.repositories.detailscreen.RepositoriesMovieReview
-import com.app.cinedimen.data.repositories.detailscreen.RepositoriesSimilarMovies
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesNowPlaying
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesPopularMovies
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesTopRated
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesUpComing
+import com.app.cinedimen.data.repositoriesImpl.detailscreen.RepositoriesImplMovieDetails
+import com.app.cinedimen.data.repositoriesImpl.detailscreen.RepositoriesImplMovieReview
+import com.app.cinedimen.data.repositoriesImpl.detailscreen.RepositoriesImplSimilarMovies
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplNowPlaying
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplPopularMovies
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplTopRated
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplUpComing
+import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesMovieDetails
+import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesMovieReview
+import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesSimilarMovies
+import com.app.cinedimen.domain.repositories.listscreen.RepositoriesNowPlaying
+import com.app.cinedimen.domain.repositories.listscreen.RepositoriesPopularMovies
+import com.app.cinedimen.domain.repositories.listscreen.RepositoriesTopRated
+import com.app.cinedimen.domain.repositories.listscreen.RepositoriesUpComing
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,42 +34,42 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideRepositoriesNowPlaying(nowPlayingGET: NowPlayingGET): RepositoriesNowPlaying {
-        return RepositoriesNowPlaying(nowPlayingGET)
+        return RepositoriesImplNowPlaying(nowPlayingGET)
     }
 
     @Provides
     @Singleton
     fun provideRepositoriesTopRated(topRatedGET: TopRatedGET): RepositoriesTopRated {
-        return RepositoriesTopRated(topRatedGET)
+        return RepositoriesImplTopRated(topRatedGET)
     }
 
     @Provides
     @Singleton
     fun provideRepositoriesUpComing(upComingGET: UpComingGET): RepositoriesUpComing {
-        return RepositoriesUpComing(upComingGET)
+        return RepositoriesImplUpComing(upComingGET)
     }
 
     @Provides
     @Singleton
     fun provideRepositoriesPopularMovies(popularGET: PopularGET): RepositoriesPopularMovies {
-        return RepositoriesPopularMovies(popularGET)
+        return RepositoriesImplPopularMovies(popularGET)
     }
 
     @Provides
     @Singleton
     fun provideRepositoriesMovieDetails(moviesDetailsGET: MoviesDetailsGET): RepositoriesMovieDetails {
-        return RepositoriesMovieDetails(moviesDetailsGET)
+        return RepositoriesImplMovieDetails(moviesDetailsGET)
     }
 
     @Provides
     @Singleton
     fun provideRepositoriesSimilarMovies(similarMoviesGET: SimilarMoviesGET): RepositoriesSimilarMovies {
-        return RepositoriesSimilarMovies(similarMoviesGET)
+        return RepositoriesImplSimilarMovies(similarMoviesGET)
     }
 
     @Provides
     @Singleton
     fun provideRepositoriesMovieReview(movieReviewGET: MovieReviewGET): RepositoriesMovieReview {
-        return RepositoriesMovieReview(movieReviewGET)
+        return RepositoriesImplMovieReview(movieReviewGET)
     }
 }

@@ -4,10 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.Dates
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.model.Result
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesTopRated
-import com.app.cinedimen.data.repositories.listscreen.RepositoriesUpComing
-import com.app.cinedimen.presentation.viewmodel.listscreen.TopRatedMoviesViewModel
-import com.app.cinedimen.presentation.viewmodel.listscreen.UpComingViewModel
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplUpComing
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -30,7 +27,7 @@ class UpComingUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesUpComing
+    private lateinit var mockRepositories: RepositoriesImplUpComing
     private lateinit var viewModel: UpComingViewModel
 
     @Before
