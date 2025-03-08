@@ -6,10 +6,12 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
+import retrofit2.http.Url
 
-interface TopRatedGET {
-    @GET("top_rated")
-    suspend fun getTopRatedMovies(
+interface MainScreenNetwork {
+    @GET
+    suspend fun getMovies(
+        @Url endpoint: String,
         @Header("Authorization") authHeader: String = "Bearer ${BuildConfig.API_KEY}",
         @Header("accept") accept: String = "application/json",
         @Query("language") language: String = "pt-BR",

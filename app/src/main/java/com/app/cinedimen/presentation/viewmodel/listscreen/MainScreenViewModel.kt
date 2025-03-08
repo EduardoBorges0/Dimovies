@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.cinedimen.data.model.NowPlayingModel
-import com.app.cinedimen.domain.repositories.listscreen.RepositoriesNowPlaying
-import com.app.cinedimen.domain.repositories.listscreen.RepositoriesPopularMovies
-import com.app.cinedimen.domain.repositories.listscreen.RepositoriesTopRated
-import com.app.cinedimen.domain.repositories.listscreen.RepositoriesUpComing
+import com.app.cinedimen.domain.repositories.listscreen.RepositoriesMainScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -17,10 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val repositoriesNowPlaying: RepositoriesNowPlaying,
-    private val repositoriesPopularMovies: RepositoriesPopularMovies,
-    private val repositoriesTopRated: RepositoriesTopRated,
-    private val repositoriesUpComing: RepositoriesUpComing,
+    private val repositoriesMainScreen: RepositoriesMainScreen,
 ) :
     ViewModel() {
 
@@ -47,7 +41,7 @@ class MainScreenViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repositoriesNowPlaying.getMoviesNowPlaying()
+                val response = repositoriesMainScreen.getMoviesNowPlaying()
                 if (response.body()?.results?.isNullOrEmpty() == true) {
                     _errorMessage.value = "Sem filmes"
                 } else if (response.isSuccessful && response.body() != null) {
@@ -73,7 +67,7 @@ class MainScreenViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repositoriesPopularMovies.getPopularMovies()
+                val response = repositoriesMainScreen.getPopularMovies()
                 if (response.isSuccessful && response.body() != null) {
                     _popularMovies.value = response.body()
                 } else if (response.body() == null) {
@@ -97,7 +91,7 @@ class MainScreenViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repositoriesTopRated.getTopRatedMovies()
+                val response = repositoriesMainScreen.getTopRatedMovies()
                 if (response.isSuccessful && response.body() != null) {
                     _topRated.value = response.body()
                 } else if (response.body() == null) {
@@ -121,7 +115,7 @@ class MainScreenViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repositoriesUpComing.getUpComingMovies()
+                val response = repositoriesMainScreen.getUpComingMovies()
                 if (response.isSuccessful && response.body() != null) {
                     _upComingMovies.value = response.body()
                 } else if (response.body() == null) {

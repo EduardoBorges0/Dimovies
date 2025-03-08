@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.Dates
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.model.Result
-import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplNowPlaying
-import com.app.cinedimen.presentation.viewmodel.listscreen.NowPlayingViewModel
+import com.app.cinedimen.data.repositoriesImpl.listscreen.RepositoriesImplMainScreen
+import com.app.cinedimen.presentation.viewmodel.listscreen.MainScreenViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -28,14 +28,14 @@ class NowPlayingUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesImplNowPlaying
-    private lateinit var viewModel: NowPlayingViewModel
+    private lateinit var mockRepositories: RepositoriesImplMainScreen
+    private lateinit var viewModel: MainScreenViewModel
 
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         mockRepositories = mockk(relaxed = true)
-        viewModel = NowPlayingViewModel(mockRepositories)
+        viewModel = MainScreenViewModel(mockRepositories)
     }
 
     @After

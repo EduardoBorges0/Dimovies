@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -33,12 +34,15 @@ import com.app.cinedimen.presentation.viewmodel.listscreen.MainScreenViewModel
 @Composable
 fun MainScreen(
     navController: NavController,
-    mainScreenViewModel: MainScreenViewModel
+    mainScreenViewModel: MainScreenViewModel,
 ) {
     var showDialog by remember { mutableStateOf(true) }
-    val nowPlayingMovies = mainScreenViewModel.nowPlayingMovies.observeAsState().value?.results ?: emptyList()
-    val upComingMovies = mainScreenViewModel.upComingMovies.observeAsState().value?.results ?: emptyList()
-    val popularMovies = mainScreenViewModel.popularMovies.observeAsState().value?.results ?: emptyList()
+    val nowPlayingMovies =
+        mainScreenViewModel.nowPlayingMovies.observeAsState().value?.results ?: emptyList()
+    val upComingMovies =
+        mainScreenViewModel.upComingMovies.observeAsState().value?.results ?: emptyList()
+    val popularMovies =
+        mainScreenViewModel.popularMovies.observeAsState().value?.results ?: emptyList()
     val topRatedMovies = mainScreenViewModel.topRated.observeAsState().value?.results ?: emptyList()
     val isLoading = mainScreenViewModel.isLoading.observeAsState().value ?: false
 
@@ -71,16 +75,45 @@ fun MainScreen(
                 CircularProgressIndicator(color = Color.White)
             }
         } else {
-            ListScreen(navController = navController, movieSituation = "Em Exibição", movieList = nowPlayingMovies, modifier = Modifier.padding(bottom = 10.dp).padding(horizontal = 10.dp))
-            ListScreen(navController = navController, movieSituation = "Em Breve", movieList = upComingMovies, modifier = Modifier.padding(bottom = 10.dp).padding(horizontal = 10.dp))
-            ListScreen(navController = navController, movieSituation = "Mais Populares", movieList = popularMovies, modifier = Modifier.padding(bottom = 10.dp).padding(horizontal = 10.dp))
-            ListScreen(navController = navController, movieSituation = "Mais Bem Avaliados", movieList = topRatedMovies, modifier = Modifier.padding(bottom = 10.dp).padding(horizontal = 10.dp))
+            ListScreen(
+                navController = navController,
+                movieSituation = stringResource(R.string.now_playing),
+                movieList = nowPlayingMovies,
+                modifier = Modifier
+                    .padding(bottom = 10.dp)
+                    .padding(horizontal = 10.dp)
+            )
+            ListScreen(
+                navController = navController,
+                movieSituation = stringResource(R.string.upcoming),
+                movieList = upComingMovies,
+                modifier = Modifier
+                    .padding(bottom = 10.dp)
+                    .padding(horizontal = 10.dp)
+            )
+            ListScreen(
+                navController = navController,
+                movieSituation =  stringResource(R.string.popular),
+                movieList = popularMovies,
+                modifier = Modifier
+                    .padding(bottom = 10.dp)
+                    .padding(horizontal = 10.dp)
+            )
+            ListScreen(
+                navController = navController,
+                movieSituation =  stringResource(R.string.top_rated),
+                movieList = topRatedMovies,
+                modifier = Modifier
+                    .padding(bottom = 10.dp)
+                    .padding(horizontal = 10.dp)
+            )
         }
 
         if (!errorMessageNowPlaying.isNullOrEmpty() ||
             !errorMessagePopular.isNullOrEmpty() ||
             !errorMessageUpComing.isNullOrEmpty() ||
-            !errorMessageTopRated.isNullOrEmpty()) {
+            !errorMessageTopRated.isNullOrEmpty()
+        ) {
 
             val errorMessage = listOfNotNull(
                 errorMessageNowPlaying,
@@ -88,7 +121,7 @@ fun MainScreen(
                 errorMessageUpComing,
                 errorMessageTopRated
             ).joinToString("\n")
-            if(showDialog){
+            if (showDialog) {
                 AlertDialogError(
                     confirmAction = {
                         mainScreenViewModel.getMoviesNowPlaying()

@@ -4,7 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.app.cinedimen.data.model.Dates
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.data.model.Result
-import com.app.cinedimen.data.repositoriesImpl.detailscreen.RepositoriesImplSimilarMovies
+import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesMovieDetails
+import com.app.cinedimen.presentation.viewmodel.detailscreen.MovieDetailsViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -26,14 +27,14 @@ class SimilarMoviesUnitTest {
     val rule = InstantTaskExecutorRule()
 
     private val testDispatcher = StandardTestDispatcher()
-    private lateinit var mockRepositories: RepositoriesImplSimilarMovies
-    private lateinit var viewModel: SimilarMoviesViewModel
+    private lateinit var mockRepositories: RepositoriesMovieDetails
+    private lateinit var viewModel: MovieDetailsViewModel
 
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         mockRepositories = mockk(relaxed = true)
-        viewModel = SimilarMoviesViewModel(mockRepositories)
+        viewModel = MovieDetailsViewModel(mockRepositories)
     }
 
     @After

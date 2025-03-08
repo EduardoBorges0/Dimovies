@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">DiMovie</string>
+
+    MainScreen
+    <string name="now_playing">Em Exibição</string>
+    <string name="upcoming">Em Breve</string>
+    <string name="popular">Mais Populares</string>
+    <string name="top_rated">Mais Bem Avaliados</string>
+
+    MovieDetails
+
+    <string name="sinopse">Sinopse</string>
+    <string name="no_sinopse">Sem sinopse.</string>
+
+    <string name="review">Comentários</string>
+    <string name="no_review">Sem comentários</string>
+
+    <string name="similar">Mais como Este</string>
+    <string name="no_similar">Sem mais filmes</string>
 </resources>

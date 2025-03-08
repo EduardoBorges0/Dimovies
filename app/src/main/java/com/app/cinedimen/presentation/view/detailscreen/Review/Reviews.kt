@@ -15,16 +15,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.cinedimen.R
 import com.app.cinedimen.data.model.MovieReviewModel
 import com.app.cinedimen.presentation.view.ui.theme.ReviewBoxColor
 
 @Composable
 fun Reviews(reviews: List<MovieReviewModel>) {
-    Text("Comentários",
+    Text( stringResource(R.string.review),
         color = Color.White,
         fontSize = 25.sp,
         fontWeight = FontWeight.Bold,
@@ -65,7 +67,7 @@ fun Reviews(reviews: List<MovieReviewModel>) {
                 }
 
             }else{
-                Text("Sem comentários",
+                Text( stringResource(R.string.no_review),
                     modifier = Modifier.padding(16.dp),
                     color = Color.White)
             }

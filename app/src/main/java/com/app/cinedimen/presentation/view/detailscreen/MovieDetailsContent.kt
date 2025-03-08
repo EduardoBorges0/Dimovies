@@ -13,8 +13,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.app.cinedimen.R
 import com.app.cinedimen.presentation.view.components.AlertDialogError
 import com.app.cinedimen.presentation.view.components.ListScreen
 import com.app.cinedimen.presentation.view.detailscreen.MovieHeader.TopDetails
@@ -43,7 +45,7 @@ fun MovieDetailsContent(navController: NavController,
     val runtime = movieDetails?.runtime ?: 0
     val genre = movieDetails?.genres ?: emptyList()
     val voteAverage = movieDetails?.vote_average ?: 0.0
-    val sinopse = movieDetails?.overview ?: ""
+    val sinopse = movieDetails?.overview ?:  stringResource(R.string.no_sinopse)
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -63,7 +65,7 @@ fun MovieDetailsContent(navController: NavController,
                 Reviews(reviews = movieReview)
         }
         ListScreen(navController = navController,
-            movieSituation = "Mais como Este",
+            movieSituation =  stringResource(R.string.similar),
             movieList = similarMovies,
             modifier = Modifier
                 .padding(bottom = 10.dp)

@@ -8,8 +8,6 @@ import com.app.cinedimen.data.model.MovieReviewsResponse
 import com.app.cinedimen.data.model.MoviesDetails
 import com.app.cinedimen.data.model.NowPlayingModel
 import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesMovieDetails
-import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesMovieReview
-import com.app.cinedimen.domain.repositories.detailscreen.RepositoriesSimilarMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -18,9 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
-    private val repositoriesMovieDetails: RepositoriesMovieDetails,
-    private val repositoriesMovieReview: RepositoriesMovieReview,
-    private val repositoriesSimilarMovies: RepositoriesSimilarMovies
+    private val repositoriesMovieDetails: RepositoriesMovieDetails
 ) : ViewModel() {
 
     private val _movieDetails = MutableLiveData<MoviesDetails>()
@@ -67,7 +63,7 @@ class MovieDetailsViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repositoriesMovieReview.getMovieReviews(movieId)
+                val response = repositoriesMovieDetails.getMovieReviews(movieId)
                 if (response.isSuccessful && response.body() != null) {
                     _movieReview.value = response.body()
                 }else if(response.body() == null){
@@ -92,7 +88,7 @@ class MovieDetailsViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repositoriesSimilarMovies.similarMovies(movieId = movieId)
+                val response = repositoriesMovieDetails.similarMovies(movieId = movieId)
                 if(response.body()?.results?.isEmpty() == true){
                     _errorMessage.value = "Filme não encontrado"
                 }else if (response.isSuccessful && response.body() != null) {
